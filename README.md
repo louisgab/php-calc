@@ -1,5 +1,5 @@
 # Calc
-
+![Tests](https://github.com/louisgab/php-calc/workflows/tests/badge.svg)
 [![Packagist Version](https://img.shields.io/packagist/v/louisgab/php-calc.svg?style=flat-square)](https://packagist.org/packages/louisgab/php-calc)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/louisgab/php-calc.svg?style=flat-square)](https://packagist.org/packages/louisgab/php-calc)
 [![GitHub license](https://img.shields.io/github/license/louisgab/php-calc.svg?style=flat-square)](https://github.com/louisgab/php-calc/blob/master/LICENSE)
