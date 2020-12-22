@@ -7,7 +7,12 @@
     ],
     "homepage": "https://github.com/louisgab/number",
     "license": "MIT",
-    "author": "Louis Gabriel <code@louisgab.me>",
+    "authors": [
+        {
+            "name": "Louis Gabriel",
+            "email": "code@louisgab.me"
+        }
+    ],
     "require": {
         "php": "^7.4"
     },
