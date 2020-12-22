@@ -1,0 +1,36 @@
+{
+    "name": "louisgab/php-calc",
+    "description": "Simple fluent float manipulation library",
+    "type": "library",
+    "keywords": [
+        "php",  "number", "float", "fluent"
+    ],
+    "homepage": "https://github.com/louisgab/number",
+    "license": "MIT",
+    "author": "Louis Gabriel <code@louisgab.me>",
+    "require": {
+        "php": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Louisgab\\Calc\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Louisgab\\Calc\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --testdox --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+   "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
