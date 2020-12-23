@@ -19,12 +19,12 @@ final class Number implements JsonSerializable
 
     public function __toString(): string
     {
-        return (string) $this->value();
+        return $this->toString();
     }
 
     public function __get($name)
     {
-        if (in_array($name, ['value', 'sign', 'wholePart', 'decimalPart'], true)) {
+        if (in_array($name, ['value', 'sign'], true)) {
             return $this->{$name}();
         }
     }
@@ -44,12 +44,13 @@ final class Number implements JsonSerializable
 
     // Accessors -----------------------------------------------------------------------------
 
+    /** Raw value, not safe, only for debug */
     public function get(): float
     {
         return $this->value;
     }
 
-    public function value(int $decimals = 6): float
+    public function value(int $decimals = PHP_FLOAT_DIG): float
     {
         return (float) number_format($this->value, $decimals, '.', '');
     }
@@ -57,16 +58,6 @@ final class Number implements JsonSerializable
     public function sign(): string
     {
         return $this->isPositive() ? '+' : '-';
-    }
-
-    public function wholePart(): int
-    {
-        return abs((int) $this->__toString());
-    }
-
-    public function decimalPart(): float
-    {
-        return abs($this->value) - $this->wholePart();
     }
 
     // Actions -------------------------------------------------------------------------------
@@ -207,9 +198,19 @@ final class Number implements JsonSerializable
         return $this->equals(self::zero());
     }
 
+    public function wholePart(): self
+    {
+        return self::of((int) $this->toString())->absolute();
+    }
+
+    public function decimalPart(): self
+    {
+        return $this->absolute()->minus($this->wholePart());
+    }
+
     public function isWhole(): bool
     {
-        return self::of($this->decimalPart())->isZero();
+        return$this->decimalPart()->isZero();
     }
 
     public function absolute(): self
@@ -234,7 +235,7 @@ final class Number implements JsonSerializable
 
     public function truncate(int $precision): self
     {
-        return self::of($this->sign() . $this->wholePart() . '.' . mb_substr((string) $this->decimalPart(), 2, $precision));
+        return self::of($this->sign() . $this->wholePart()->toInt() . '.' . mb_substr((string) $this->decimalPart()->value, 2, $precision));
     }
 
     public function compare($that): int
@@ -288,7 +289,7 @@ final class Number implements JsonSerializable
     public function toInt(): int
     {
         if (! $this->isWhole()) {
-            throw new Exception('This number cant be casted to int without precision loss, use round() instead');
+            throw new Exception('This number cant be casted to int without precision loss, use round(0) before');
         }
 
         return (int) $this->value();
@@ -296,7 +297,12 @@ final class Number implements JsonSerializable
 
     public function toFloat(): float
     {
-        return $this->get();
+        return $this->value();
+    }
+
+    public function toString(): string
+    {
+        return (string) $this->value();
     }
 
     public function toArray(): array

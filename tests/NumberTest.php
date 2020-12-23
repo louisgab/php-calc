@@ -58,15 +58,15 @@ class NumberTest extends TestCase
      */
     public function testWholePartIsRight($value, $expected): void
     {
-        $this->assertSame($expected, Number::of($value)->wholePart);
+        $this->assertSame($expected, Number::of($value)->wholePart()->get());
     }
 
     public function wholePartProvider(): array
     {
         return [
-            'zero' => [0, 0],
-            'five quarter' => [5/4, 1],
-            'minus one half' => [-1/2, 0],
+            'zero' => [0, 0.0],
+            'five quarter' => [5/4, 1.0],
+            'minus one half' => [-1/2, 0.0],
         ];
     }
 
@@ -75,7 +75,7 @@ class NumberTest extends TestCase
      */
     public function testDecimalPartIsRight($value, $expected): void
     {
-        $this->assertSame($expected, Number::of($value)->decimalPart);
+        $this->assertSame($expected, Number::of($value)->decimalPart()->get());
     }
 
     public function decimalPartProvider(): array
