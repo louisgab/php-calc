@@ -1,17 +1,13 @@
 # Documentation
-
 ## Instanciation
-
 `Number::of(any)` accepts any numeric value like floats, integers and even strings or other Number instances
 
-e.g: `Number::of("1.5")`, `Number::of(1/3)`, `Number::of(1)`, `Number::of(Number::of(12.8))` are valid and correctly handled
+e.g: `Number::of("1.5")`, `Number::of(1/3)`, `Number::of(1)`, `Number::of(Number::of(12.8))` are valid and correctly handled  
 
-On the other hand, the strings must be sane
-
+On the other hand, the strings must be sane  
 e.g `Number::of('1/3')`, `Number::of('1,2')`, `Number::of('1.5€')` will throw an exception
 
 Basic instances are already built-in:
-
 -   `Number::zero()` alias for Number::of(0)
 -   `Number::one()` alias for Number::of(1)
 -   `Number::ten()` alias for Number::of(10)
@@ -19,7 +15,6 @@ Basic instances are already built-in:
 -   `Number::thousand()` alias for Number::of(1000)
 
 ## Collections
-
 -   `Number::sum(...any)` return a Number which values to the sum of the values in the collection
 -   `Number::max(...any)` return a Number which values to the max value in the collection
 -   `Number::min(...any)` return a Number which values to the min value in the collection
@@ -28,9 +23,7 @@ Basic instances are already built-in:
 Those methods accepts a list of valid values (e.g: `Number::sum("2", 4, 1/2)`) as well as an iterable object (e.g: `Number::sum(["2", 4, 1/2])`)
 
 ## Methods
-
 ### Basic maths methods:
-
 -   `plus(any)` returns a Number which values to the sum between the two Numbers
 -   `minus(any)` returns a Number which values to the difference between the two Numbers
 -   `multiply(any)` returns a Number which values to the multiplication between the two Numbers
@@ -55,12 +48,12 @@ Those methods accepts a list of valid values (e.g: `Number::sum("2", 4, 1/2)`) a
 -   `isLessOrEqual(any)` returns the inferiority comparison result
 
 ### Other useful methods:
-
+-   `wholePart()` returns a Number which value is the left part of the floating point (e.g 3.52 is 3.0)
+-   `decimalPart()` returns a Number which value is the right part of the floating point (e.g 3.52 is 0.52)
 -   `isPositive()` returns whether the Number value is positive or not
 -   `isNegative()` returns whether the Number value is negative or not
 -   `isZero()` returns whether the Number value is equal to zero
 -   `isWhole()` returns whether the Number has a decimal part
--   `decimalPlaces()` returns a count of the decimal part digits
 -   `apply(callback)` returns the callback result, useful for custom functions
 -   `when(bool, callback)` returns the callback result if the condition is truthy
 -   `format(locale, decimals, forceDecimals)` returns the display format of the number in the desired locale (not for database storage!)
@@ -70,8 +63,6 @@ Those methods accepts a list of valid values (e.g: `Number::sum("2", 4, 1/2)`) a
 -   `get()` returns the raw internal float value (for debug purposes)
 -   `value()` returns the float value, preferred over value(), because the format will be right (no strange values like -0.0)
 -   `sign()` returns `+` or `-`. N.B: Zero will be positive.
--   `wholePart()` returns the left part of the floating point (e.g 3.52 is 3)
--   `decimalPart()` returns the right part of the floating point (e.g 3.52 is 0.52)
 
 All accessors can be retrieved as properties like `->value` or `->sign`.
 
