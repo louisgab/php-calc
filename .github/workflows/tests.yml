@@ -19,6 +19,11 @@ jobs:
           php-version: "7.4"
           tools: composer:v2
           coverage: none
+      
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -35,7 +40,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer update --prefer-dist --no-progress --no-interaction
 
       - name: Run test suite
         run: composer test
