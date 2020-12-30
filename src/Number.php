@@ -163,29 +163,47 @@ final class Number implements JsonSerializable
         return ! $this->equals($that);
     }
 
-    public function isGreater($that): bool
+    public function isGreater($that, bool $strict = true): bool
     {
-        return $this->compare($that) > 0;
+        if ($strict) {
+            return $this->compare($that) > 0;
+        }
+
+        return $this->compare($that) >= 0;
     }
 
     public function isGreaterOrEqual($that): bool
     {
-        return $this->compare($that) >= 0;
+        return $this->isGreater($that, false);
     }
 
-    public function isLess($that): bool
+    public function isLess($that, bool $strict = true): bool
     {
-        return $this->compare($that) < 0;
+        if ($strict) {
+            return $this->compare($that) < 0;
+        }
+
+        return $this->compare($that) <= 0;
     }
 
     public function isLessOrEqual($that): bool
     {
-        return $this->compare($that) <= 0;
+        return $this->isLess($that, false);
     }
 
     public function isNegative(): bool
     {
         return $this->isLess(self::zero());
+    }
+
+    public function isInRange($low, $high, bool $strict = true): bool
+    {
+        return $this->isGreater($low, $strict) && $this->isLess($high, $strict);
+    }
+
+    public function isInRangeOrEqual($low, $high): bool
+    {
+        return $this->isInRange($low, $high, false);
     }
 
     public function isPositive(): bool

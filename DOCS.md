@@ -42,10 +42,12 @@ Those methods accepts a list of valid values (e.g: `Number::sum("2", 4, 1/2)`) a
 -   `compare(any)` returns -1 if Number is less, 1 if Number is greater and 0 if Numbers are equal, like strcmp does for strings
 -   `equals(any)` returns whether the two Numbers are equal. It handles floats epsilon comparison.
 -   `isDifferent(any)` returns the inverse of equals
--   `isGreater(any)` returns the strict superiority comparison result
--   `isGreaterOrEqual(any)` returns the superiority comparison result
--   `isLess(any)` returns the strict inferiority comparison result
--   `isLessOrEqual(any)` returns the inferiority comparison result
+-   `isGreater(any, strict)` returns the superiority comparison result, defaults to strict mode
+-   `isGreaterOrEqual(any)` shortcut for isGreater without strict mode
+-   `isLess(any, strict)` returns the strict inferiority comparison result, defaults to strict mode
+-   `isLessOrEqual(any)` shortcut for isLess without strict mode
+-   `isInRange(low, high, strict)` returns wether the Number belongs to the interval ]low, high[, defaults to strict mode
+-   `isInRangeOrEqual(any)` shortcut for isInRange without strict mode (interval [low, high])
 
 ### Other useful methods:
 -   `wholePart()` returns a Number which value is the left part of the floating point (e.g 3.52 is 3.0)

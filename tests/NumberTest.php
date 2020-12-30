@@ -231,6 +231,22 @@ class NumberTest extends TestCase
     }
 
     /**
+     * @dataProvider isInRangeProvider
+     */
+    public function testisInRangeIsRight($value, $low, $high): void
+    {
+        $this->assertTrue(Number::of($value)->isInRange($low, $high));
+    }
+
+    public function isInRangeProvider(): array
+    {
+        return [
+            'zero' => [0, -0.001, 0.001],
+            'small' => [0.001, 0.0009, 0.0011],
+        ];
+    }
+
+    /**
      * @dataProvider isNegativeProvider
      */
     public function testIsNegativeIsRight($value, $expected): void
